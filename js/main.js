@@ -109,19 +109,6 @@ const CLASSES_DATA = [
     bg: 'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=1200&q=80',
     description: 'An invigorating flow that links continuous movement with pranic breath. Build internal heat, stamina, and cardiovascular vitality while exploring playful arm balances, transitions, and standing strength poses.',
     benefits: ['Builds endurance and lean strength', 'Detoxifying heat generation', 'Fosters inner confidence & focus']
-  },
-  {
-    id: 'yin-deep-release',
-    category: 'restorative',
-    title: 'Yin Deep Fascia Release',
-    instructor: 'Elena Hart',
-    duration: '75 min',
-    level: 'All Levels',
-    intensity: 'Slow & Grounding',
-    tag: 'Therapeutic',
-    bg: 'https://images.unsplash.com/photo-1508215885820-4523e431397e?auto=format&fit=crop&w=1200&q=80',
-    description: 'A slow-paced style where seated postures are held for 3 to 5 minutes with breath awareness. Targets deep connective tissues, ligaments, and fascia rather than muscles to dramatically increase mobility and release stored tension.',
-    benefits: ['Releases tight hip and spine fascia', 'Cultivates deep patience', 'Harmonizes vital meridian energy flow']
   }
 ];
 
@@ -195,8 +182,8 @@ const SCHEDULE_DATA = {
   ],
   tuesday: [
     { time: '07:00 - 08:05 AM', title: 'Vinyasa Vitality', instructor: 'Marcus Vance', room: 'Sun Studio', spots: '5 spots left', category: 'Yoga' },
-    { time: '10:30 - 11:30 AM', title: 'Sound Bath & Breathwork', instructor: 'Maya Patel', room: 'Sanctuary', spots: '6 spots left', category: 'Meditation' },
-    { time: '05:30 - 06:45 PM', title: 'Yin Deep Fascia Release', instructor: 'Elena Hart', room: 'Earth Room', spots: '3 spots left', category: 'Restorative' }
+    { time: '10:30 - 11:30 AM', title: 'Gentle Flow & Breath', instructor: 'Maya Patel', room: 'Sanctuary', spots: '6 spots left', category: 'Yoga' },
+    { time: '05:30 - 06:45 PM', title: 'Restorative Candlelight', instructor: 'Elena Hart', room: 'Earth Room', spots: '3 spots left', category: 'Restorative' }
   ],
   wednesday: [
     { time: '07:30 - 08:30 AM', title: 'Gentle Morning Flow', instructor: 'Elena Hart', room: 'Sun Studio', spots: '5 spots left', category: 'Yoga' },
@@ -205,7 +192,7 @@ const SCHEDULE_DATA = {
   ],
   thursday: [
     { time: '07:00 - 08:05 AM', title: 'Vinyasa Vitality', instructor: 'Marcus Vance', room: 'Sun Studio', spots: '6 spots left', category: 'Yoga' },
-    { time: '05:45 - 07:00 PM', title: 'Yin & Sound Resonance', instructor: 'Maya Patel', room: 'Sanctuary', spots: '2 spots left', spotsClass: 'few', category: 'Meditation' }
+    { time: '05:45 - 07:00 PM', title: 'Restorative Stillness', instructor: 'Luna Reyes', room: 'Sanctuary', spots: '2 spots left', spotsClass: 'few', category: 'Restorative' }
   ],
   friday: [
     { time: '08:00 - 09:00 AM', title: 'Gentle Morning Flow', instructor: 'Elena Hart', room: 'Sun Studio', spots: '7 spots left', category: 'Yoga' },
@@ -219,7 +206,7 @@ const SCHEDULE_DATA = {
   ],
   sunday: [
     { time: '09:30 - 10:45 AM', title: 'Sunday Soul Flow', instructor: 'Elena Hart', room: 'Sun Studio', spots: '5 spots left', category: 'Yoga' },
-    { time: '04:00 - 05:30 PM', title: 'Full Moon Sound & Yin', instructor: 'Maya Patel', room: 'Sanctuary', spots: '1 spot left', spotsClass: 'few', category: 'Meditation' }
+    { time: '04:00 - 05:30 PM', title: 'Restorative Sound & Rest', instructor: 'Maya Patel', room: 'Sanctuary', spots: '1 spot left', spotsClass: 'few', category: 'Restorative' }
   ]
 };
 
