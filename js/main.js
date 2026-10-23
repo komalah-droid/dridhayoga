@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileDrawer();
   initClassFiltering();
-  initSchedule();
   initModals();
   initNewsletter();
   initContactForm();
@@ -167,103 +166,6 @@ function initClassFiltering() {
       btn.classList.add('active');
       const category = btn.getAttribute('data-filter');
       renderClasses(category);
-    });
-  });
-}
-
-/* ==========================================================================
-   Weekly Schedule Engine
-   ========================================================================== */
-const SCHEDULE_DATA = {
-  monday: [
-    { time: '07:30 - 08:30 AM', title: 'Gentle Morning Flow', instructor: 'Elena Hart', room: 'Sun Studio', spots: '4 spots left', category: 'Yoga' },
-    { time: '12:00 - 01:00 PM', title: 'Pilates Flow Strength', instructor: 'Clara Nguyen', room: 'Earth Room', spots: '2 spots left', category: 'Pilates' },
-    { time: '06:00 - 07:15 PM', title: 'Restorative Candlelight', instructor: 'Luna Reyes', room: 'Sanctuary', spots: 'Full (Waitlist)', spotsClass: 'few', category: 'Restorative' }
-  ],
-  tuesday: [
-    { time: '07:00 - 08:05 AM', title: 'Vinyasa Vitality', instructor: 'Marcus Vance', room: 'Sun Studio', spots: '5 spots left', category: 'Yoga' },
-    { time: '10:30 - 11:30 AM', title: 'Gentle Flow & Breath', instructor: 'Maya Patel', room: 'Sanctuary', spots: '6 spots left', category: 'Yoga' },
-    { time: '05:30 - 06:45 PM', title: 'Restorative Candlelight', instructor: 'Elena Hart', room: 'Earth Room', spots: '3 spots left', category: 'Restorative' }
-  ],
-  wednesday: [
-    { time: '07:30 - 08:30 AM', title: 'Gentle Morning Flow', instructor: 'Elena Hart', room: 'Sun Studio', spots: '5 spots left', category: 'Yoga' },
-    { time: '12:30 - 01:20 PM', title: 'Pilates Core Align', instructor: 'Clara Nguyen', room: 'Earth Room', spots: '4 spots left', category: 'Pilates' },
-    { time: '07:00 - 08:15 PM', title: 'Restorative Candlelight', instructor: 'Luna Reyes', room: 'Sanctuary', spots: '3 spots left', category: 'Restorative' }
-  ],
-  thursday: [
-    { time: '07:00 - 08:05 AM', title: 'Vinyasa Vitality', instructor: 'Marcus Vance', room: 'Sun Studio', spots: '6 spots left', category: 'Yoga' },
-    { time: '05:45 - 07:00 PM', title: 'Restorative Stillness', instructor: 'Luna Reyes', room: 'Sanctuary', spots: '2 spots left', spotsClass: 'few', category: 'Restorative' }
-  ],
-  friday: [
-    { time: '08:00 - 09:00 AM', title: 'Gentle Morning Flow', instructor: 'Elena Hart', room: 'Sun Studio', spots: '7 spots left', category: 'Yoga' },
-    { time: '12:00 - 01:00 PM', title: 'Pilates Flow Strength', instructor: 'Clara Nguyen', room: 'Earth Room', spots: '5 spots left', category: 'Pilates' },
-    { time: '06:00 - 07:30 PM', title: 'Candlelight & Sound Immersion', instructor: 'Luna Reyes & Maya Patel', room: 'Sanctuary', spots: 'Special Event', spotsClass: 'few', category: 'Special' }
-  ],
-  saturday: [
-    { time: '09:00 - 10:15 AM', title: 'Weekend Prana Flow', instructor: 'Marcus Vance', room: 'Sun Studio', spots: '3 spots left', category: 'Yoga' },
-    { time: '11:00 - 12:15 PM', title: 'Sound Bath & Breathwork', instructor: 'Maya Patel', room: 'Sanctuary', spots: '2 spots left', spotsClass: 'few', category: 'Meditation' },
-    { time: '04:30 - 05:45 PM', title: 'Restorative Stillness', instructor: 'Luna Reyes', room: 'Earth Room', spots: '4 spots left', category: 'Restorative' }
-  ],
-  sunday: [
-    { time: '09:30 - 10:45 AM', title: 'Sunday Soul Flow', instructor: 'Elena Hart', room: 'Sun Studio', spots: '5 spots left', category: 'Yoga' },
-    { time: '04:00 - 05:30 PM', title: 'Restorative Sound & Rest', instructor: 'Maya Patel', room: 'Sanctuary', spots: '1 spot left', spotsClass: 'few', category: 'Restorative' }
-  ]
-};
-
-function initSchedule() {
-  const dayBtns = document.querySelectorAll('.day-btn');
-  const scheduleRowsContainer = document.querySelector('.schedule-rows-container');
-  if (!scheduleRowsContainer) return;
-
-  const renderDaySchedule = (dayKey) => {
-    const list = SCHEDULE_DATA[dayKey] || [];
-    if (list.length === 0) {
-      scheduleRowsContainer.innerHTML = `<p style="padding: 2rem; text-align: center;">No scheduled classes for this day.</p>`;
-      return;
-    }
-
-    scheduleRowsContainer.innerHTML = list.map(item => `
-      <div class="schedule-row">
-        <div class="schedule-time">${item.time}</div>
-        <div>
-          <div class="schedule-title">${item.title}</div>
-          <div class="text-muted" style="font-size: 0.85rem;">${item.room} • ${item.category}</div>
-        </div>
-        <div class="schedule-instructor">
-          <span style="font-size: 0.75rem; text-transform: uppercase; color: #888;">Instructor</span><br>
-          <strong>${item.instructor}</strong>
-        </div>
-        <div>
-          <span class="schedule-spots ${item.spotsClass || ''}">${item.spots}</span>
-        </div>
-        <div>
-          <button class="primary-button variant-dark btn-book-slot" data-title="${item.title}" data-time="${item.time}" data-instructor="${item.instructor}" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">
-            <span>Reserve</span>
-          </button>
-        </div>
-      </div>
-    `).join('');
-
-    // Attach click event to reserve buttons
-    document.querySelectorAll('.btn-book-slot').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const title = btn.getAttribute('data-title');
-        const time = btn.getAttribute('data-time');
-        const instructor = btn.getAttribute('data-instructor');
-        openBookingModal({ title, time, instructor });
-      });
-    });
-  };
-
-  renderDaySchedule('monday');
-
-  dayBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      dayBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const day = btn.getAttribute('data-day');
-      renderDaySchedule(day);
     });
   });
 }
